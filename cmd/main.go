@@ -10,13 +10,13 @@ import (
 	"strings"
 
 	"github.com/brunopessoa097/estudos-geral/historico"
-	"github.com/brunopessoa097/estudos-geral/model"
 	"github.com/brunopessoa097/estudos-geral/produto"
+	"github.com/brunopessoa097/estudos-geral/utils"
 )
 
 func adicionar() {
 	reader := bufio.NewReader(os.Stdin)
-	var novoProdut = model.Produto{}
+	var novoProdut = utils.Produto{}
 
 	Clear()
 

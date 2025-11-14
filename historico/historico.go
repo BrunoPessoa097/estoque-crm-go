@@ -3,13 +3,13 @@ package historico
 import (
 	"fmt"
 
-	"github.com/brunopessoa097/estudos-geral/model"
+	"github.com/brunopessoa097/estudos-geral/utils"
 )
 
-var hist = make([]model.Historico, 0)
+var hist = make([]utils.Historico, 0)
 
-func Add(tipo string, p *model.Produto) {
-	hist = append(hist, model.Historico{
+func Add(tipo string, p *utils.Produto) {
+	hist = append(hist, utils.Historico{
 		Tipo:    tipo,
 		Produto: p,
 	})
