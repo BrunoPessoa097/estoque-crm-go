@@ -4,8 +4,6 @@ import (
 	"bufio"
 	"fmt"
 	"os"
-	"os/exec"
-	"runtime"
 	"strconv"
 	"strings"
 
@@ -18,7 +16,7 @@ func adicionar() {
 	reader := bufio.NewReader(os.Stdin)
 	var novoProdut = utils.Produto{}
 
-	Clear()
+	utils.Clear()
 
 	fmt.Println("--- Adicionando Produto ---")
 	// nome do produto
@@ -58,7 +56,7 @@ func adicionar() {
 }
 
 func listar() {
-	Clear()
+	utils.Clear()
 	fmt.Println("--- Lista de Produto(s) ---")
 	produto.Listar()
 	fmt.Println("------")
@@ -67,7 +65,7 @@ func listar() {
 }
 
 func vender() {
-	Clear()
+	utils.Clear()
 	reader := bufio.NewReader(os.Stdin)
 
 	fmt.Println("--- Vender produtos ---")
@@ -92,7 +90,7 @@ func vender() {
 }
 
 func hist() {
-	Clear()
+	utils.Clear()
 	fmt.Println("--- Histórico ---")
 	historico.Listar()
 	fmt.Println("------")
@@ -115,7 +113,7 @@ func menu2(f func()) {
 }
 
 func atualiz() {
-	Clear()
+	utils.Clear()
 	reader := bufio.NewReader(os.Stdin)
 	fmt.Println("--- Adicionando estoque ao produto ---")
 	fmt.Printf("Produto: ")
@@ -138,21 +136,8 @@ func atualiz() {
 	menu2(atualiz)
 }
 
-func Clear() {
-	var cmd *exec.Cmd
-
-	if runtime.GOOS == "windowns" {
-		cmd = exec.Command("cmd", "/c", "cls")
-	} else {
-		cmd = exec.Command("clear")
-	}
-
-	cmd.Stdout = os.Stdout
-	cmd.Run()
-}
-
 func menu() {
-	Clear()
+	utils.Clear()
 	var escolha int
 
 	fmt.Println("--- Menu ---")
@@ -182,6 +167,6 @@ func menu() {
 }
 
 func main() {
-	Clear()
+	utils.Clear()
 	menu()
 }
