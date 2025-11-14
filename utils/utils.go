@@ -13,4 +13,5 @@ type Historico struct {
 
 var (
 	Produtos = make(map[string]Produto)
+	Hist     = make([]Historico, 0)
 )
