@@ -24,8 +24,8 @@ Um CRM simples sem acesso ao banco de dados para fim de mostrar simples para uma
 │   └── main.go         # ponto de entrada 
 ├── historico
 │   └── historico.go    # Registro de histórico
-├── model
-│   └── produto.go      # Models de Produto e histórico
+├── utils
+│   └── utils.go        # arquivos utils de Produto e histórico
 ├── produto
 │   └── produto.go      # Produtos integrações
 ├── LICENSE             # Licença
