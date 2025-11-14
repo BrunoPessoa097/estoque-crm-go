@@ -4,18 +4,16 @@ import (
 	"fmt"
 
 	"github.com/brunopessoa097/estudos-geral/historico"
-	"github.com/brunopessoa097/estudos-geral/model"
+	"github.com/brunopessoa097/estudos-geral/utils"
 )
 
-var produtos = make(map[string]model.Produto)
-
 func Add(nome string, preco float64, estoque int) string {
-	produtos[nome] = model.Produto{
+	utils.Produtos[nome] = utils.Produto{
 		Nome:    nome,
 		Preco:   preco,
 		Estoque: estoque,
 	}
-	historico.Add("Adicionado", &model.Produto{
+	historico.Add("Adicionado", &utils.Produto{
 		Nome:    nome,
 		Preco:   preco,
 		Estoque: estoque,
@@ -24,17 +22,17 @@ func Add(nome string, preco float64, estoque int) string {
 }
 
 func Listar() {
-	if len(produtos) == 0 {
+	if len(utils.Produtos) == 0 {
 		fmt.Println("Sem Produtos para mostrar")
 	}
 
-	for _, prod := range produtos {
+	for _, prod := range utils.Produtos {
 		fmt.Printf("Nome: %s | Preço: %.2f | Estoque: %d \n", prod.Nome, prod.Preco, prod.Estoque)
 	}
 }
 
 func Vender(nome string, quant int) (string, bool) {
-	prod, ok := produtos[nome]
+	prod, ok := utils.Produtos[nome]
 
 	if !ok {
 		return "Produto não existe", false
@@ -47,9 +45,9 @@ func Vender(nome string, quant int) (string, bool) {
 	}
 
 	prod.Estoque -= int(quant)
-	produtos[nome] = prod
+	utils.Produtos[nome] = prod
 
-	historico.Add("Venda", &model.Produto{
+	historico.Add("Venda", &utils.Produto{
 		Nome:    nome,
 		Preco:   prod.Preco,
 		Estoque: quant,
@@ -58,16 +56,16 @@ func Vender(nome string, quant int) (string, bool) {
 }
 
 func AtualizarProduto(nome string, adicionado int) (string, bool) {
-	prod, ok := produtos[nome]
+	prod, ok := utils.Produtos[nome]
 
 	if !ok {
 		return "Produto não existe", false
 	}
 
 	prod.Estoque += adicionado
-	produtos[nome] = prod
+	utils.Produtos[nome] = prod
 
-	historico.Add("Atualizando estoque", &model.Produto{
+	historico.Add("Atualizando estoque", &utils.Produto{
 		Nome:    nome,
 		Preco:   prod.Preco,
 		Estoque: adicionado,
